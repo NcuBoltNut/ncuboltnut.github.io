@@ -1,0 +1,14 @@
+.activity-list { max-width: var(--container-max); margin: 0 auto; padding: clamp(56px,8vw,88px) 32px 40px; display: grid; grid-template-columns: 1fr; gap: 32px; }
+.activity-row { background: var(--cream); border: 1px solid var(--line2); display: flex; align-items: stretch; flex-wrap: wrap; }
+.activity-row-photo { flex: 1 1 45%; min-width: 240px; order: 2; }
+.activity-row-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.activity-row-body { flex: 1 1 55%; min-width: 260px; padding: clamp(24px,3vw,32px); display: flex; flex-direction: column; justify-content: flex-start; order: 1; }
+.activity-row-body .eyebrow { font-size: 19px; margin-bottom: 12px; }
+.activity-row-body h2 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.activity-row-body p { font-size: 20px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+.activity-row-body p:last-child { margin-bottom: 0; }
+.activity-row-body p a { font-weight: 700; }
+.activity-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+.activity-stats .num { font-family: var(--font-title); font-size: 20px; font-weight: 900; color: var(--ink); }
+.activity-stats .label { font-size: 19px; color: var(--muted2); }
+@media (max-width: 640px) { .activity-row-photo { order: 1; } .activity-row-body { order: 2; } }

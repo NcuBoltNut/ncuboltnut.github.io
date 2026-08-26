@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/pages/about.css';
+import { advisors } from '../data/advisors';
+import { generations } from '../data/generations';
+import { members } from '../data/members';
+import { history } from '../data/history';
+
+const sortedAdvisors = [...advisors].sort((a, b) => a.order - b.order);
+const sortedGenerations = [...generations].sort((a, b) => a.order - b.order);
+const sortedHistory = [...history].sort((a, b) => a.order - b.order);
+
+function membersOf(genId: string) {
+  return members.filter((m) => m.generation === genId).sort((a, b) => a.order - b.order);
+}
+---
+
+<BaseLayout
+  title="關於我們 — NCU BoltNut Robotics"
+  description="認識 NCU BoltNut Robotics — 國立中央大學機械工程學系機器人團隊的故事、使命與核心價值。"
+  navActive="about"
+>
+  <section class="page-header fade-up">
+    <span class="eyebrow">Who We Are</span>
+    <h1>關於我們 / ABOUT</h1>
+    <p>創立於 2025 年，由國立中央大學機械工程學系學生自主組成的機器人團隊</p>
+  </section>
+
+  <section id="studio" class="team-story fade-up">
+    <div class="team-story-inner">
+      <span class="eyebrow">Our Story</span>
+      <h2>從一間教室，出發</h2>
+      <img src="/logo.png" alt="NCU BoltNut Robotics Logo" class="story-logo" />
+      <p class="lead"><strong>NCU BoltNut Robotics</strong> 由國立中央大學機械工程學系學生於 2025 年 4 月自主創立，以工程三館 129 教室為起點，從一場招生說明會開始，逐步建立起屬於我們自己的機器人團隊。</p>
+      <p>我們的名字來自機械工程最基本的緊固件——螺栓（Bolt）與螺帽（Nut）。每一位成員都是不可缺少的一環，緊扣在一起，才能把機器人設計帶向任何想到達的地方。</p>
+      <p>成立後，我們在暑假舉辦了為期五天的密集暑訓營，涵蓋理論課程、Arduino 程式設計、馬達控制、機器人設計方法論與競賽實作，奠定紮實的技術基礎。同年秋季正式對外招募擴編，於三大社群平台同步經營。</p>
+      <p>2025 年 12 月，我們與陽明交通大學、清華大學及台灣師範大學跨校組成「Future Shark」隊伍，出戰東京威力科創機器人大賽（TEL Robot Combat），在全台頂尖隊伍雲集的賽場中最終榮獲亞軍，寫下團隊成立以來第一座競賽獎盃。</p>
+      <p style="clear:both;">緊接著，我們正式啟動 2025–2026 國研盃智慧機械競賽備賽計畫，並於 2026 年 3 月攜帶「獵爪清道夫」機器人登上競賽舞台。這只是 BoltNut 旅程的開始。</p>
+    </div>
+    <div class="studio-grid">
+      <img src="/photos/studio.jpg" alt="團隊機器人研發工作室" />
+      <div>
+        <h3>團隊機器人研發工作室</h3>
+        <p>團隊成立初期，長期借用實驗室及走廊空間進行機器人製作與測試，受限於空間狹小、設備分散，難以建立完整的工程開發流程。團隊自主規劃並向企業尋求合作，成功獲得天鋼贊助工業級工作桌、工具櫃及系統化收納設備，並運用 IdeaNCU 補助經費添購電動工具，逐步完成工作室建置。目前已設有機器人組裝區、電控測試區、3D 列印區、零件管理區及功能測試區，成為日常培訓、競賽備賽與技術交流的重要基地。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-grid-wrap">
+    <div class="section-rule section-head">
+      <span class="eyebrow">Team Info</span>
+      <h2>基本資料</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="eyebrow">所屬單位</span>
+        <p>國立中央大學<br />機械工程學系</p>
+      </div>
+      <div class="info-cell">
+        <span class="eyebrow">所在地</span>
+        <p>桃園市中壢區<br />中大路300號</p>
+      </div>
+      <div class="info-cell">
+        <span class="eyebrow">競賽項目</span>
+        <p>國研盃智慧機械競賽<br />TEL Robot Combat 東京威力科創機器人大賽</p>
+      </div>
+      <div class="info-cell">
+        <span class="eyebrow">隊訓</span>
+        <p>Bolt together,<br />Nuts going anywhere</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="location-wrap">
+    <div class="section-rule section-head">
+      <span class="eyebrow">Find Us</span>
+      <h2>位置地圖</h2>
+    </div>
+    <div class="location-frame">
+      <iframe
+        src="https://www.google.com/maps?q=%E5%9C%8B%E7%AB%8B%E4%B8%AD%E5%A4%AE%E5%A4%A7%E5%AD%B8%E6%A9%9F%E6%A2%B0%E5%B7%A5%E7%A8%8B%E5%AD%B8%E7%B3%BB&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </section>
+
+  <section id="members" class="info-grid-wrap">
+    <div class="section-rule section-head">
+      <span class="eyebrow">Our People</span>
+      <h2>成員介紹</h2>
+    </div>
+
+    <div class="member-group">
+      <p class="member-group-label">指導老師</p>
+      <div class="advisor-grid">
+        {sortedAdvisors.map((advisor) => (
+          <div class="advisor-card">
+            <div class="advisor-photo"><img src={advisor.photo} alt={advisor.name} style={advisor.photoStyle} /></div>
+            <div>
+              <p class="name">{advisor.name}</p>
+              <p class="title">{advisor.title}</p>
+              <p class="bio">{advisor.bio}</p>
+              <p class="email">Email：<a href={`mailto:${advisor.email}`}>{advisor.email}</a></p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {sortedGenerations.map((gen) => {
+      const genMembers = membersOf(gen.id);
+      const leader = genMembers.find((m) => m.isLeader);
+      const rest = genMembers.filter((m) => !m.isLeader);
+      return (
+        <div class="member-group">
+          <p class="member-group-label">{gen.label} <span class="year">{gen.year}</span></p>
+          {leader && (
+            <div class="leader-card">
+              <div class="leader-photo"><img src={leader.photo} alt={leader.name} style={leader.photoStyle} /></div>
+              <div>
+                <p class="name">{leader.name}</p>
+                <p class="class">{leader.class}</p>
+                <p class="role">{leader.role}</p>
+              </div>
+            </div>
+          )}
+          <div class="member-grid">
+            {rest.map((member) => (
+              <div class="member-cell">
+                <div class="member-photo"><img src={member.photo} alt={member.name} style={member.photoStyle} /></div>
+                <p class="name">{member.name}</p>
+                <p class="class">{member.class}</p>
+                <p class:list={['role', { tag: member.roleTag }]}>{member.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </section>
+
+  <section id="history" class="timeline-wrap">
+    <div class="section-rule section-head" style="margin-bottom:40px;">
+      <span class="eyebrow">Timeline</span>
+      <h2>隊史沿革</h2>
+    </div>
+    <div class="timeline">
+      {sortedHistory.map((item) => (
+        <div class:list={['timeline-item', { milestone: item.milestone }]}>
+          <span class="timeline-dot"></span>
+          {item.milestone ? (
+            <div class="timeline-meta">
+              <span class="timeline-date">{item.date}</span>
+              <span class="milestone-tag">里程碑</span>
+            </div>
+          ) : (
+            <span class="timeline-date">{item.date}</span>
+          )}
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,32 @@
+.ach-main {
+  max-width: var(--container-max); margin: 0 auto; padding: clamp(56px,8vw,88px) 32px 40px;
+}
+.ach-record {
+  border: 2px solid var(--ink); padding: clamp(28px,4vw,44px); margin-bottom: 24px;
+}
+.ach-record h2 { font-size: clamp(20px,2.5vw,26px); font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 16px; }
+.ach-record p { font-size: 15px; color: var(--ink2); line-height: 1.8; margin-bottom: 20px; max-width: 760px; }
+.ach-record p strong { color: var(--orange); }
+.ach-date-pill { display: inline-block; font-family: var(--font-title); font-size: 12px; color: var(--muted2); border: 1px solid var(--line2); padding: 4px 14px; }
+
+.robot-section { max-width: var(--container-max); margin: 0 auto; padding: 0 32px clamp(56px,8vw,88px); }
+.robot-box { border: 1px solid var(--line2); padding: clamp(28px,4vw,40px); display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+.robot-box-text { flex: 1 1 300px; min-width: 220px; }
+.robot-box h3 { font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.robot-box .robot-sub { font-family: var(--font-title); font-size: 12px; color: var(--muted2); letter-spacing: 0.08em; margin-bottom: 18px; }
+.robot-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+.robot-tags span { font-size: 13px; color: var(--orange); border: 1px solid var(--orange); padding: 4px 14px; }
+.box-photo {
+  flex: 1 1 260px; min-width: 220px; max-width: 340px; aspect-ratio: 4/3;
+  border-radius: 8px; overflow: hidden; border: 1px solid var(--line2);
+  box-shadow: 0 8px 20px rgba(28,28,28,0.08);
+}
+.box-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.academic-section { max-width: var(--container-max); margin: 0 auto; padding: 0 32px clamp(56px,8vw,88px); }
+.academic-box { border: 1px solid var(--line2); padding: clamp(24px,3vw,36px); display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+.academic-box-text { flex: 1 1 300px; min-width: 220px; }
+.academic-box h3 { font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.academic-rank { font-family: var(--font-title); font-size: 32px; font-weight: 900; color: var(--orange); margin-bottom: 12px; }
+.academic-box p { font-size: 14.5px; color: var(--muted); line-height: 1.75; }
+.academic-box p strong { color: var(--ink); }

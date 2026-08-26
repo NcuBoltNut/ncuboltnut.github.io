@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsFilter from '../vue/public/NewsFilter.vue';
+import '../styles/pages/news.css';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('news');
+entries.sort((a, b) => a.data.order - b.data.order);
+
+function pad(n: number) {
+  return String(n).padStart(2, '0');
+}
+
+function formatDate(d: Date) {
+  return `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())}`;
+}
+
+const items = entries.map((entry, i) => ({
+  num: pad(i + 1),
+  date: formatDate(entry.data.date),
+  year: String(entry.data.date.getFullYear()),
+  title: entry.data.title,
+  html: entry.data.summary,
+}));
+---
+
+<BaseLayout
+  title="最新動態 — NCU BoltNut Robotics"
+  description="NCU BoltNut Robotics 最新動態 — 賽事籌備、企業參訪與競賽戰報。"
+  navActive="news"
+>
+  <section class="page-header fade-up">
+    <span class="eyebrow">Latest Updates</span>
+    <h1>最新動態 / NEWS</h1>
+    <p>賽事籌備、企業參訪與競賽戰報</p>
+  </section>
+
+  <section class="container" style="padding-top:clamp(40px,6vw,64px); padding-bottom:clamp(64px,8vw,96px);">
+    <NewsFilter client:load items={items} />
+  </section>
+</BaseLayout>

@@ -1,0 +1,36 @@
+name: Production (Cloudflare Pages)
+
+on:
+  schedule:
+    - cron: "0 16 * * *" # 00:00 Asia/Taipei (UTC+8), low-traffic window
+  workflow_dispatch:
+
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+
+      - run: >
+          npx wrangler pages deploy dist
+          --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }}
+          --branch=main
+          --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

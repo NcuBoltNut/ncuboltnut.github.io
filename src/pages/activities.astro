@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/pages/activities.css';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('activities');
+entries.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="過往活動成果 — NCU BoltNut Robotics"
+  description="NCU BoltNut Robotics 過往活動成果 — 招生說明會、暑訓營、企業參訪與學術交流。"
+  navActive="activities"
+>
+  <section class="page-header fade-up">
+    <span class="eyebrow">Past Activities</span>
+    <h1>過往活動成果 / ACTIVITIES</h1>
+    <p>從招生說明會到暑訓營、競賽戰績與學術交流 — BoltNut 依時間軸走過的足跡</p>
+  </section>
+
+  <section class="activity-list">
+    {entries.map(({ data }) => (
+      <div class="activity-row fade-up">
+        <div class="activity-row-photo"><img src={data.photo} alt={data.title} /></div>
+        <div class="activity-row-body">
+          <span class="eyebrow">{data.dateLabel}</span>
+          <h2>{data.title}</h2>
+          <p>
+            <Fragment set:html={data.summary} />
+            {data.linkHref && <> <a href={data.linkHref}>{data.linkText}</a></>}
+          </p>
+          {data.stats && (
+            <div class="activity-stats">
+              {data.stats.map((stat) => (
+                <div><div class="num">{stat.num}</div><div class="label">{stat.label}</div></div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </section>
+</BaseLayout>
