@@ -1,0 +1,83 @@
+---
+import Navbar from '../components/common/Navbar.astro';
+import Footer from '../components/common/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  /** Transparent-over-hero navbar (homepage only). */
+  navOverlay?: boolean;
+  /** Which nav entry to highlight. */
+  navActive?: 'home' | 'news' | 'about' | 'activities' | 'achievements' | 'sponsors' | 'contact' | 'none';
+}
+
+const { title, description, navOverlay = false, navActive = 'none' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Navbar overlay={navOverlay} active={navActive} />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMobileMenu = document.querySelector('.nav-mobile-menu');
+      if (navToggle && navMobileMenu) {
+        navToggle.addEventListener('click', () => {
+          navToggle.classList.toggle('open');
+          navMobileMenu.classList.toggle('open');
+        });
+        navMobileMenu.querySelectorAll('a').forEach((a) =>
+          a.addEventListener('click', () => {
+            navToggle.classList.remove('open');
+            navMobileMenu.classList.remove('open');
+          })
+        );
+      }
+
+      document.querySelectorAll('.nav-mobile-group-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const submenu = btn.nextElementSibling;
+          const isOpen = btn.classList.toggle('open');
+          if (submenu && submenu.classList.contains('nav-mobile-submenu')) {
+            submenu.classList.toggle('open', isOpen);
+          }
+        });
+      });
+
+      const overlayNav = document.querySelector('.navbar.overlay');
+      if (overlayNav) {
+        const onScroll = () => overlayNav.classList.toggle('scrolled', window.scrollY > 40);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      // Casual deterrent against right-click-save / drag-out on photos.
+      // Not real protection — devtools/view-source still bypass this.
+      document.querySelectorAll('img').forEach((img) => {
+        img.addEventListener('contextmenu', (e) => e.preventDefault());
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+---
+export interface Props {
+  /** Transparent-over-hero navbar that turns solid on scroll (homepage only). */
+  overlay?: boolean;
+  /** Which nav entry to highlight as active. */
+  active?: 'home' | 'news' | 'about' | 'activities' | 'achievements' | 'sponsors' | 'contact' | 'none';
+}
+
+const { overlay = false, active = 'none' } = Astro.props;
+
+const isActive = (key: Props['active']) => (active === key ? 'active' : '');
+---
+
+<nav class:list={['navbar', { overlay }]}>
+  <a href="/" class="nav-logo">
+    <img src="/logo.png" alt="BoltNut" class="nav-logo-img" />
+    <span class="nav-brand">BoltNut</span>
+  </a>
+  <div class="nav-links">
+    <a href="/" class={isActive('home')}>首頁</a>
+    <a href="/news" class={isActive('news')}>最新動態</a>
+    <div class="nav-dropdown">
+      <a href="/about#studio" class:list={['nav-dropdown-trigger', isActive('about')]}>關於我們 <span class="nav-caret">▾</span></a>
+      <div class="nav-dropdown-menu">
+        <div class="nav-dropdown-menu-inner">
+          <a href="/about#studio">工作室介紹</a>
+          <a href="/about#members">成員介紹</a>
+          <a href="/about#history">隊史</a>
+        </div>
+      </div>
+    </div>
+    <a href="/activities" class={isActive('activities')}>活動成果</a>
+    <a href="/achievements" class={isActive('achievements')}>歷史成就</a>
+    <div class="nav-dropdown">
+      <a href="/sponsors#sponsors" class:list={['nav-dropdown-trigger', isActive('sponsors')]}>贊助專區 <span class="nav-caret">▾</span></a>
+      <div class="nav-dropdown-menu">
+        <div class="nav-dropdown-menu-inner">
+          <a href="/sponsors#sponsors">贊助商介紹</a>
+          <a href="/sponsors#sponsor-how">如何贊助我們</a>
+        </div>
+      </div>
+    </div>
+    <a href="/contact" class={isActive('contact')}>聯絡我們</a>
+  </div>
+  <button class="nav-toggle" aria-label="選單"><span></span><span></span><span></span></button>
+  <div class="nav-mobile-menu">
+    <a href="/">首頁</a>
+    <a href="/news">最新動態</a>
+    <button type="button" class="nav-mobile-group-toggle">關於我們 <span class="nav-caret">▾</span></button>
+    <div class="nav-mobile-submenu">
+      <a href="/about#studio">工作室介紹</a>
+      <a href="/about#members">成員介紹</a>
+      <a href="/about#history">隊史</a>
+    </div>
+    <a href="/activities">過往活動成果</a>
+    <a href="/achievements">重大歷史成就</a>
+    <button type="button" class="nav-mobile-group-toggle">贊助商專區 <span class="nav-caret">▾</span></button>
+    <div class="nav-mobile-submenu">
+      <a href="/sponsors#sponsors">贊助商介紹</a>
+      <a href="/sponsors#sponsor-how">如何贊助我們</a>
+    </div>
+    <a href="/contact">聯絡我們</a>
+  </div>
+</nav>
+<div class="nav-spacer"></div>

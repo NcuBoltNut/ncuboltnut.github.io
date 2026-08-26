@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="NCU BoltNut Robotics"
+  description="國立中央大學機械工程學系機器人團隊 NCU BoltNut Robotics。"
+  navActive="home"
+>
+  <section class="container" style="padding: 160px 0 120px;">
+    <p style="font-family: var(--font-title); letter-spacing: 0.08em; color: var(--muted2); margin-bottom: 12px;">
+      Stage 1 — Astro Bootstrap
+    </p>
+    <h1 style="font-family: var(--font-title); font-size: clamp(28px, 4vw, 48px); color: var(--ink);">
+      架構骨架已就緒
+    </h1>
+    <p style="max-width: 640px; margin-top: 16px; color: var(--ink2);">
+      這是 Astro + TypeScript + Vue 遷移的第一階段：base layout、design tokens、導覽列與頁尾已完成移植。
+      實際頁面內容的視覺對等遷移(Stage 2)尚未開始。
+    </p>
+  </section>
+</BaseLayout>

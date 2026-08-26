@@ -1,0 +1,28 @@
+/* ============================================================
+   Design tokens — NCU BoltNut Robotics
+   Ported from the legacy static site's style.css :root block.
+   Preserve: cream / black / orange, Orbitron + Noto Sans TC.
+   ============================================================ */
+
+:root {
+  /* Colors */
+  --cream:    #fdfaf5;
+  --ink:      #1c1c1c;
+  --ink2:     #3a3a3a;
+  --muted:    #666666;
+  --muted2:   #8a8378;
+  --line:     #ece6dc;
+  --line2:    #e4ddd0;
+  --orange:   #f07020;
+  --orange-d: #d45a10;
+  --orange-l: #ff9d5c;
+  --gold:     #c99a66;
+
+  /* Typography */
+  --font-title: 'Orbitron', sans-serif;
+  --font-body:  'Noto Sans TC', sans-serif;
+
+  /* Layout */
+  --container-max: 1600px;
+  --navbar-height: 96px;
+}
