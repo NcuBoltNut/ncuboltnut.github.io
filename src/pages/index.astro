@@ -27,13 +27,10 @@ const sortedSponsors = [...sponsors].sort((a, b) => a.order - b.order);
 >
   <section class="hero">
     <div class="hero-video-wrap">
-      <iframe
-        src="https://www.youtube.com/embed/aD9Q8hKHNbc?autoplay=1&mute=1&loop=1&playlist=aD9Q8hKHNbc&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1"
-        title="NCU BoltNut Robotics"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+      <video autoplay muted loop playsinline poster="/images/hero/hero-poster.webp" aria-label="NCU BoltNut Robotics 2025 TEL Robot Combat 精華片段">
+        <source src="/video/hero/hero-mobile.mp4" media="(max-width: 767px)" type="video/mp4" />
+        <source src="/video/hero/hero-desktop.mp4" type="video/mp4" />
+      </video>
     </div>
     <div class="hero-scrim"></div>
     <div class="hero-inner">

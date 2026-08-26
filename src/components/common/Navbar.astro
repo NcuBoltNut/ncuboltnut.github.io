@@ -62,4 +62,4 @@ const isActive = (key: Props['active']) => (active === key ? 'active' : '');
     <a href="/contact">聯絡我們</a>
   </div>
 </nav>
-<div class="nav-spacer"></div>
+{!overlay && <div class="nav-spacer"></div>}
