@@ -68,3 +68,10 @@ if (newsTabs.length && newsItems.length) {
     newsTabs[nextIdx].click();
   });
 }
+
+// Casual deterrent against right-click-save / drag-out on photos.
+// Not real protection — devtools/view-source still bypass this.
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('contextmenu', e => e.preventDefault());
+  img.addEventListener('dragstart', e => e.preventDefault());
+});

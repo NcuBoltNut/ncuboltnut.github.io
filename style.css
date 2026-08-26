@@ -242,39 +242,24 @@ img { max-width: 100%; display: block; }
   margin-bottom: 20px;
   text-transform: uppercase;
 }
-.hero-heading { margin: 0; }
 .hero-sub {
-  display: block;
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: clamp(48px, 9vw, 124px);
+  color: var(--orange);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+}
+.hero-sub .accent { color: var(--orange); }
+.hero-title {
   font-family: var(--font-title);
   font-weight: 700;
   font-size: clamp(22px, 4vw, 35px);
   color: var(--orange);
-  margin-bottom: 4px;
+  margin-bottom: 28px;
   letter-spacing: 0.02em;
 }
-.hero-sub .sm { font-size: 0.72em; }
-.hero-title {
-  display: block;
-  font-family: var(--font-title);
-  font-weight: 900;
-  font-size: clamp(48px, 9vw, 124px);
-  color: #fff;
-  margin-bottom: 28px;
-  letter-spacing: -0.01em;
-  line-height: 0.95;
-}
-.skip-link {
-  position: fixed;
-  top: 8px;
-  left: 8px;
-  z-index: 999;
-  padding: 10px 16px;
-  background: var(--ink);
-  color: #fff;
-  text-decoration: none;
-  transform: translateY(-150%);
-}
-.skip-link:focus { transform: translateY(0); }
 .hero-tagline {
   font-size: 15px; font-style: italic;
   color: rgba(255,255,255,0.8);
@@ -519,6 +504,7 @@ img { max-width: 100%; display: block; }
   font-size: 44px; font-weight: 900;
   color: var(--gold);
   flex-shrink: 0; line-height: 1;
+  width: 64px;
 }
 .news-item-body { flex: 1; min-width: 220px; }
 .news-item-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -800,4 +786,14 @@ img { max-width: 100%; display: block; }
    =================================================== */
 @media (max-width: 900px) {
   .team-story { grid-template-columns: 1fr; }
+}
+
+/* ===================================================
+   IMAGE PROTECTION (casual deterrent only — not a real
+   barrier against determined downloading via devtools)
+   =================================================== */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
 }
