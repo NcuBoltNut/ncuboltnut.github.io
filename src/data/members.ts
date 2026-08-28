@@ -18,7 +18,7 @@ export const members: Member[] = [
   { id: 'xuyx', name: '許翊軒', generation: 'gen-02', class: '機械三A', role: '總務部長', isLeader: false, roleTag: false, photo: '/photos/member-xuyx.jpg', order: 4 },
   { id: 'linby', name: '林柏瑜', generation: 'gen-02', class: '機械三A', role: '公關部幹部', isLeader: false, roleTag: false, photo: '/photos/member-linby.jpg', order: 5 },
   { id: 'qiuyue', name: '邱月', generation: 'gen-02', class: '機械三B', role: '美宣部長', isLeader: false, roleTag: false, photo: '/photos/member-qiuyue.jpg', order: 6 },
-  { id: 'lanse', name: '藍士恩', generation: 'gen-02', class: '機械三B', role: '機動組幹部', isLeader: false, roleTag: false, photo: '/photos/member-lanse.jpg', order: 7 },
+  { id: 'lanse', name: '藍士恩', generation: 'gen-02', class: '機械三B', role: '公關組幹部', isLeader: false, roleTag: false, photo: '/photos/member-lanse.jpg', order: 7 },
   { id: 'suzh', name: '蘇子皓', generation: 'gen-03', class: '機械二C', role: '工程部儲備幹部', isLeader: false, roleTag: false, photo: '/photos/member-suzh.jpg', order: 1 },
   { id: 'weixe', name: '魏絃恩', generation: 'gen-03', class: '資工二A', role: '工程部儲備幹部', isLeader: false, roleTag: false, photo: '/photos/member-weixe.webp', order: 2 },
   { id: 'wuyt', name: '吳祐霆', generation: 'gen-03', class: '機械二A', role: '公關部儲備幹部', isLeader: false, roleTag: false, photo: '/photos/member-wuyt.jpg', order: 3 },
