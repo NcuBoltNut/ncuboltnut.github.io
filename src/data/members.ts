@@ -28,7 +28,7 @@ export const members: Member[] = [
   { id: 'huangjr', name: '黃傑瑞', generation: 'gen-01', class: '機械四C', role: '隊長', isLeader: true, roleTag: false, photo: '/photos/member-huangjr.jpg', order: 1 },
   { id: 'liuyb', name: '劉禹邦', generation: 'gen-01', class: '機械四A', role: '副隊長', isLeader: false, roleTag: true, photo: '/photos/member-liuyb.jpg', order: 2 },
   { id: 'liudy', name: '劉東諺', generation: 'gen-01', class: '機械四B', role: '工程部機構組長', isLeader: false, roleTag: false, photo: '/photos/member-liudy.webp', order: 3 },
-  { id: 'huangcs', name: '黃承笙', generation: 'gen-01', class: '機械四B', role: '工程部控制組長', isLeader: false, roleTag: false, photo: '/photos/defult.jpg', order: 4 },
-  { id: 'pangw', name: '潘冠瑋', generation: 'gen-01', class: '機械四B', role: '總務部長', isLeader: false, roleTag: false, photo: '/photos/member-pangw.webp', order: 5 },
+  { id: 'pangw', name: '潘冠瑋', generation: 'gen-01', class: '機械四B', role: '總務部長', isLeader: false, roleTag: false, photo: '/photos/member-pangw.webp', order: 4 },
+  { id: 'huangcs', name: '黃承笙', generation: 'gen-01', class: '機械四B', role: '工程部控制組長', isLeader: false, roleTag: false, photo: '/photos/defult.jpg', order: 5 },
   { id: 'yeyj', name: '葉彥均', generation: 'gen-01', class: '機械四B', role: '公關組幹部', isLeader: false, roleTag: false, photo: '/photos/member-yeyj.webp', order: 6 },
 ];
