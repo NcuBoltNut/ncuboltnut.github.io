@@ -9,3 +9,17 @@
 .sponsor-detail-text p { font-size: 14px; color: var(--ink2); line-height: 1.75; margin: 0; }
 .sponsor-how-note { font-size: 14.5px; color: var(--muted); margin-top: 28px; }
 .sponsor-how-note a { font-weight: 700; }
+
+/* Sponsors stay deliberately static. */
+.sponsor-section,
+.sponsor-detail-row,
+.sponsor-detail-logo,
+.sponsor-detail-logo img,
+.sponsor-detail-text,
+.sponsor-section .info-cell {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+.sponsor-detail-row:hover,
+.sponsor-section .info-cell:hover { background: var(--cream); box-shadow: none; }

@@ -48,6 +48,25 @@ const sortedSponsors = [...sponsors].sort((a, b) => a.order - b.order);
     </div>
   </section>
 
+  <section class="training-stats" aria-label="人才培育成果">
+    <div class="training-stats-label">
+      <span>TRAINING / 2025–26</span>
+      <strong>人才培育成果</strong>
+    </div>
+    <div class="training-stat">
+      <span class="num">23</span>
+      <p>名新生接受<br />系統化工程訓練</p>
+    </div>
+    <div class="training-stat">
+      <span class="num">24+</span>
+      <p>小時<br />累積教學</p>
+    </div>
+    <div class="training-stat">
+      <span class="num">90%</span>
+      <p>培訓課程<br />完成率</p>
+    </div>
+  </section>
+
   {latestNews && (
     <section class="news-teaser">
       <div class="news-teaser-row">
@@ -67,14 +86,15 @@ const sortedSponsors = [...sponsors].sort((a, b) => a.order - b.order);
     </section>
   )}
 
-  <section class="photo-band-full">
+  <a href="/about" class="photo-band-full" aria-label="前往關於我們">
     <img src="/hero-team.jpg" alt="NCU BoltNut Robotics 團隊合照" />
     <div class="photo-band-scrim"></div>
     <div class="photo-band-inner">
       <span class="eyebrow">The Team</span>
       <h2>每一顆螺栓，都不可或缺</h2>
+      <span class="photo-band-link-label">MEET THE TEAM ↗</span>
     </div>
-  </section>
+  </a>
 
   <section id="about" class="about-teaser" style="border-top:1px solid var(--line2); padding-top:clamp(56px,8vw,88px);">
     <div class="about-teaser-text">

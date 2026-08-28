@@ -31,6 +31,7 @@ const { title, description, navOverlay = false, navActive = 'none' } = Astro.pro
     />
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
     <Navbar overlay={navOverlay} active={navActive} />
 
     <main id="main-content">
@@ -70,6 +71,60 @@ const { title, description, navOverlay = false, navActive = 'none' } = Astro.pro
         const onScroll = () => overlayNav.classList.toggle('scrolled', window.scrollY > 40);
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
+      }
+
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const progressBar = document.querySelector<HTMLElement>('.scroll-progress span');
+      const hero = document.querySelector<HTMLElement>('.hero');
+      const heroVideo = hero?.querySelector<HTMLElement>('.hero-video-wrap');
+      const heroContent = hero?.querySelector<HTMLElement>('.hero-inner');
+      let ticking = false;
+      const updateScrollEffects = () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        const pageProgress = max > 0 ? scrollY / max : 0;
+        if (progressBar) progressBar.style.transform = `scaleX(${pageProgress})`;
+        if (hero && heroVideo && heroContent && !reducedMotion) {
+          const p = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / hero.offsetHeight));
+          heroVideo.style.transform = `scale(${1 + p * .055})`;
+          heroVideo.style.opacity = String(1 - p * .68);
+          heroContent.style.transform = `translateY(${-p * 48}px)`;
+          heroContent.style.opacity = String(1 - p * 1.18);
+        }
+        ticking = false;
+      };
+      addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(updateScrollEffects); } }, { passive: true });
+      updateScrollEffects();
+
+      const revealTargets = document.querySelectorAll<HTMLElement>('main > section:not(.hero):not([id^="sponsor"]), .activity-row, .ach-record, .robot-box, .academic-box, .info-cell, .member-group, .timeline-item, .social-cell');
+      revealTargets.forEach((el, i) => { el.classList.add('motion-reveal'); el.style.setProperty('--reveal-delay', `${Math.min(i % 4, 3) * 55}ms`); });
+      const images = document.querySelectorAll<HTMLElement>('main img:not(.about-teaser-logo):not(.story-logo):not(.sponsor-mini-cell img):not(.sponsor-detail-logo img)');
+      images.forEach((img) => img.parentElement?.classList.add('motion-image'));
+
+      const animateNumber = (el: HTMLElement) => {
+        const match = el.textContent?.trim().match(/^(?:第\s*)?(\d+)/);
+        if (!match) return;
+        const target = Number(match[1]); if (!target || target > 9999) return;
+        const original = el.textContent || ''; const start = performance.now();
+        const tick = (now: number) => { const p = Math.min(1, (now-start)/900); const value = Math.round(target * (1-Math.pow(1-p,3))); el.textContent = original.replace(match[1], String(value)); if (p < 1) requestAnimationFrame(tick); };
+        requestAnimationFrame(tick);
+      };
+
+      if ('IntersectionObserver' in window && !reducedMotion) {
+        const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('motion-in');
+          if ((entry.target as HTMLElement).matches('.num, .academic-rank')) animateNumber(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }), { threshold: .12, rootMargin: '0px 0px -5% 0px' });
+        revealTargets.forEach(el => observer.observe(el));
+        document.querySelectorAll<HTMLElement>('.motion-image, .num, .academic-rank').forEach(el => observer.observe(el));
+      } else document.querySelectorAll<HTMLElement>('.motion-reveal,.motion-image').forEach(el => el.classList.add('motion-in'));
+
+      if (!reducedMotion && matchMedia('(pointer:fine)').matches) {
+        document.querySelectorAll<HTMLElement>('.btn').forEach((button) => {
+          button.addEventListener('pointermove', (event) => { const r = button.getBoundingClientRect(); button.style.setProperty('--mx', `${(event.clientX-r.left-r.width/2)*.12}px`); button.style.setProperty('--my', `${(event.clientY-r.top-r.height/2)*.16}px`); });
+          button.addEventListener('pointerleave', () => { button.style.setProperty('--mx','0px'); button.style.setProperty('--my','0px'); });
+        });
       }
 
       // Casual deterrent against right-click-save / drag-out on photos.
