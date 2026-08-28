@@ -3,6 +3,11 @@ export interface Generation {
   label: string; // "第一屆"
   year: string; // "大四" — display year-in-school for this generation's founding members
   order: number;
+  /** Once true, this generation's members no longer render inline on the
+   *  about page — they move into a single dropdown-gated "歷屆學長姐"
+   *  section instead, so the page doesn't grow a full member roster per
+   *  graduated year. */
+  isAlumni?: boolean;
 }
 
 export const generations: Generation[] = [

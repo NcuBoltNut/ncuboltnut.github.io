@@ -16,6 +16,7 @@ function formatDate(d: Date) {
 }
 
 const items = entries.map((entry, i) => ({
+  id: entry.id,
   num: pad(i + 1),
   date: formatDate(entry.data.date),
   year: String(entry.data.date.getFullYear()),

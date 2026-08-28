@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue';
 
 interface NewsItem {
+  id: string;
   num: string;
   date: string;
   year: string;
@@ -54,7 +55,7 @@ function onKeydown(e: KeyboardEvent) {
     </div>
 
     <div class="news-list" :key="activeYear">
-      <div v-for="item in visibleItems" :key="item.num" class="news-item">
+      <div v-for="item in visibleItems" :id="item.id" :key="item.num" class="news-item">
         <span class="news-num">{{ item.num }}</span>
         <div class="news-item-body">
           <div class="news-item-meta">

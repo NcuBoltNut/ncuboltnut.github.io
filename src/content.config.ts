@@ -18,7 +18,7 @@ const activities = defineCollection({
   schema: z.object({
     title: z.string(),
     dateLabel: z.string(),
-    photo: z.string(),
+    photos: z.array(z.string()).min(1),
     summary: z.string(),
     stats: z
       .array(

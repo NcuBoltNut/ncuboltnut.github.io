@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ActivityGallery from '../vue/public/ActivityGallery.vue';
 import '../styles/pages/activities.css';
 import { getCollection } from 'astro:content';
 
@@ -19,9 +20,11 @@ entries.sort((a, b) => a.data.order - b.data.order);
   </section>
 
   <section class="activity-list">
-    {entries.map(({ data }) => (
-      <div class="activity-row fade-up">
-        <div class="activity-row-photo"><img src={data.photo} alt={data.title} /></div>
+    {entries.map(({ id, data }) => (
+      <div id={id} class="activity-row fade-up">
+        <div class="activity-row-photo">
+          <ActivityGallery client:visible photos={data.photos} alt={data.title} />
+        </div>
         <div class="activity-row-body">
           <span class="eyebrow">{data.dateLabel}</span>
           <h2>{data.title}</h2>

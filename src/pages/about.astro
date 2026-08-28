@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AlumniSelector from '../vue/public/AlumniSelector.vue';
 import '../styles/pages/about.css';
 import { advisors } from '../data/advisors';
 import { generations } from '../data/generations';
@@ -10,9 +11,16 @@ const sortedAdvisors = [...advisors].sort((a, b) => a.order - b.order);
 const sortedGenerations = [...generations].sort((a, b) => a.order - b.order);
 const sortedHistory = [...history].sort((a, b) => a.order - b.order);
 
+const currentGenerations = sortedGenerations.filter((g) => !g.isAlumni);
+const alumniGenerations = sortedGenerations.filter((g) => g.isAlumni);
+
 function membersOf(genId: string) {
   return members.filter((m) => m.generation === genId).sort((a, b) => a.order - b.order);
 }
+
+const alumniMembersByGeneration = Object.fromEntries(
+  alumniGenerations.map((gen) => [gen.id, membersOf(gen.id)])
+);
 ---
 
 <BaseLayout
@@ -108,7 +116,7 @@ function membersOf(genId: string) {
       </div>
     </div>
 
-    {sortedGenerations.map((gen) => {
+    {currentGenerations.map((gen) => {
       const genMembers = membersOf(gen.id);
       const leader = genMembers.find((m) => m.isLeader);
       const rest = genMembers.filter((m) => !m.isLeader);
@@ -138,6 +146,17 @@ function membersOf(genId: string) {
         </div>
       );
     })}
+
+    {alumniGenerations.length > 0 && (
+      <div class="member-group">
+        <p class="member-group-label">歷屆學長姐</p>
+        <AlumniSelector
+          client:load
+          generations={alumniGenerations.map((g) => ({ id: g.id, label: g.label, year: g.year }))}
+          membersByGeneration={alumniMembersByGeneration}
+        />
+      </div>
+    )}
   </section>
 
   <section id="history" class="timeline-wrap">
