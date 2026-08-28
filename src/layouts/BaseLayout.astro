@@ -78,22 +78,6 @@ const { title, description, navOverlay = false, navActive = 'none' } = Astro.pro
       const hero = document.querySelector<HTMLElement>('.hero');
       const heroVideo = hero?.querySelector<HTMLElement>('.hero-video-wrap');
       const heroContent = hero?.querySelector<HTMLElement>('.hero-inner');
-      let ticking = false;
-      const updateScrollEffects = () => {
-        const max = document.documentElement.scrollHeight - innerHeight;
-        const pageProgress = max > 0 ? scrollY / max : 0;
-        if (progressBar) progressBar.style.transform = `scaleX(${pageProgress})`;
-        if (hero && heroVideo && heroContent && !reducedMotion) {
-          const p = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / hero.offsetHeight));
-          heroVideo.style.transform = `scale(${1 + p * .055})`;
-          heroVideo.style.opacity = String(1 - p * .68);
-          heroContent.style.transform = `translateY(${-p * 48}px)`;
-          heroContent.style.opacity = String(1 - p * 1.18);
-        }
-        ticking = false;
-      };
-      addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(updateScrollEffects); } }, { passive: true });
-      updateScrollEffects();
 
       const revealTargets = document.querySelectorAll<HTMLElement>('main > section:not(.hero):not([id^="sponsor"]), .activity-row, .ach-record, .robot-box, .academic-box, .info-cell, .member-group, .timeline-item, .social-cell');
       revealTargets.forEach((el, i) => { el.classList.add('motion-reveal'); el.style.setProperty('--reveal-delay', `${Math.min(i % 4, 3) * 55}ms`); });
@@ -109,16 +93,63 @@ const { title, description, navOverlay = false, navActive = 'none' } = Astro.pro
         requestAnimationFrame(tick);
       };
 
-      if ('IntersectionObserver' in window && !reducedMotion) {
+      const revealNow = (el: HTMLElement) => {
+        el.classList.add('motion-in');
+        if (el.matches('.num, .academic-rank')) animateNumber(el);
+      };
+
+      // IntersectionObserver is the primary trigger, but on a fast mobile
+      // flick-scroll a section can cross the whole viewport between the
+      // frames the browser actually samples for intersection, and never
+      // fire at all — leaving real content (member list, activity feed)
+      // permanently at opacity:0. Belt-and-suspenders fix: every scroll
+      // tick, force-reveal anything whose box has already reached the
+      // viewport, independent of whether IntersectionObserver caught it.
+      const unrevealed = new Set<HTMLElement>([
+        ...revealTargets,
+        ...document.querySelectorAll<HTMLElement>('.motion-image, .num, .academic-rank'),
+      ]);
+      const revealIfInView = () => {
+        for (const el of unrevealed) {
+          if (el.getBoundingClientRect().top < innerHeight * 1.05) {
+            revealNow(el);
+            unrevealed.delete(el);
+          }
+        }
+      };
+
+      let ticking = false;
+      const updateScrollEffects = () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        const pageProgress = max > 0 ? scrollY / max : 0;
+        if (progressBar) progressBar.style.transform = `scaleX(${pageProgress})`;
+        if (hero && heroVideo && heroContent && !reducedMotion) {
+          const p = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / hero.offsetHeight));
+          heroVideo.style.transform = `scale(${1 + p * .055})`;
+          heroVideo.style.opacity = String(1 - p * .68);
+          heroContent.style.transform = `translateY(${-p * 48}px)`;
+          heroContent.style.opacity = String(1 - p * 1.18);
+        }
+        if (unrevealed.size) revealIfInView();
+        ticking = false;
+      };
+      addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(updateScrollEffects); } }, { passive: true });
+      addEventListener('resize', revealIfInView, { passive: true });
+      updateScrollEffects();
+
+      if (reducedMotion) {
+        unrevealed.forEach(revealNow);
+        unrevealed.clear();
+      } else if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add('motion-in');
-          if ((entry.target as HTMLElement).matches('.num, .academic-rank')) animateNumber(entry.target as HTMLElement);
-          observer.unobserve(entry.target);
+          const el = entry.target as HTMLElement;
+          revealNow(el);
+          unrevealed.delete(el);
+          observer.unobserve(el);
         }), { threshold: .12, rootMargin: '0px 0px -5% 0px' });
-        revealTargets.forEach(el => observer.observe(el));
-        document.querySelectorAll<HTMLElement>('.motion-image, .num, .academic-rank').forEach(el => observer.observe(el));
-      } else document.querySelectorAll<HTMLElement>('.motion-reveal,.motion-image').forEach(el => el.classList.add('motion-in'));
+        unrevealed.forEach(el => observer.observe(el));
+      }
 
       if (!reducedMotion && matchMedia('(pointer:fine)').matches) {
         document.querySelectorAll<HTMLElement>('.btn').forEach((button) => {
