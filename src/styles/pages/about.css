@@ -90,7 +90,7 @@
    =================================================== */
 .timeline-wrap { max-width: 900px; margin: 0 auto; padding: clamp(56px,8vw,88px) 32px; }
 .timeline { position: relative; padding-left: 40px; border-left: 2px solid var(--ink); }
-.timeline-item { position: relative; padding-bottom: 44px; }
+.timeline-item { position: relative; padding-bottom: 44px; scroll-margin-top: calc(var(--navbar-height) + 16px); }
 .timeline-item:last-child { padding-bottom: 0; }
 .timeline-dot {
   position: absolute; left: -49px; top: 2px;

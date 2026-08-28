@@ -166,7 +166,7 @@ const alumniMembersByGeneration = Object.fromEntries(
     </div>
     <div class="timeline">
       {sortedHistory.map((item) => (
-        <div class:list={['timeline-item', { milestone: item.milestone }]}>
+        <div id={item.id} class:list={['timeline-item', { milestone: item.milestone }]}>
           <span class="timeline-dot"></span>
           {item.milestone ? (
             <div class="timeline-meta">
