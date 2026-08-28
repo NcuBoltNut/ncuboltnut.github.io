@@ -10,5 +10,5 @@ stats:
     label: "滿意度"
   - num: "2500+"
     label: "紀錄瀏覽"
-order: 1
+order: 10
 ---

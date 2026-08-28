@@ -8,5 +8,5 @@ stats:
     label: "參與人次"
   - num: "1hr"
     label: "體驗活動"
-order: 4
+order: 7
 ---

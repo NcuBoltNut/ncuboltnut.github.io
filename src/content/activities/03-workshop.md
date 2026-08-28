@@ -10,5 +10,5 @@ stats:
     label: "理解程度（滿分 5 分）"
   - num: "≥4.5"
     label: "講師評分（滿分 5 分）"
-order: 3
+order: 8
 ---

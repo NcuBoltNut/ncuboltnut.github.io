@@ -10,5 +10,5 @@ stats:
     label: "課程"
   - num: "48hr+"
     label: "累積時數"
-order: 2
+order: 9
 ---
