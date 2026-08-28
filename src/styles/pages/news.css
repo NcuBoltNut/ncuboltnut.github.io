@@ -60,6 +60,7 @@
 .news-item-body h3 { font-size: 18px; font-weight: 700; color: var(--ink); margin: 10px 0 8px; transition:color .25s ease; }
 .news-item:hover .news-item-body h3 { color:var(--orange-d); }
 .news-item-body p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+.news-link { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--orange-d); }
 .news-empty { font-size: 14px; color: var(--muted2); padding: 24px 0; }
 
 @media (max-width: 700px) {

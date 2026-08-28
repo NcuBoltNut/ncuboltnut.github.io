@@ -21,6 +21,8 @@ const items = entries.map((entry, i) => ({
   year: String(entry.data.date.getFullYear()),
   title: entry.data.title,
   html: entry.data.summary,
+  linkText: entry.data.linkText,
+  linkHref: entry.data.linkHref,
 }));
 ---
 

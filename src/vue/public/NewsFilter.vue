@@ -7,6 +7,8 @@ interface NewsItem {
   year: string;
   title: string;
   html: string;
+  linkText?: string;
+  linkHref?: string;
 }
 
 const props = defineProps<{ items: NewsItem[] }>();
@@ -61,6 +63,7 @@ function onKeydown(e: KeyboardEvent) {
           </div>
           <h3>{{ item.title }}</h3>
           <p v-html="item.html"></p>
+          <a v-if="item.linkHref" :href="item.linkHref" class="news-link">{{ item.linkText || '查看更多 →' }}</a>
         </div>
       </div>
       <p v-if="visibleItems.length === 0" class="news-empty">此分類目前尚無動態。</p>
