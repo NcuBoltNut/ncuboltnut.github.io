@@ -12,8 +12,6 @@ stats:
     label: "實際參與人數"
   - num: "4.64/5"
     label: "活動滿意度"
-  - num: "70"
-    label: "IG 追蹤成長人數"
 linkText: "查看隊史 →"
 linkHref: "/about#freshman-camp-2026"
 order: 0
