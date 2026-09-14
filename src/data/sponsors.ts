@@ -48,4 +48,20 @@ export const sponsors: Sponsor[] = [
     blurb: '專業 PCB 製造與電子製造服務商，支援團隊電控系統的電路板打樣與製作。',
     order: 5,
   },
+  {
+    id: 'kss',
+    name: '凱士士股份有限公司',
+    nameEn: 'KSS Co., Ltd.',
+    logo: '/sponsor-kss.webp',
+    blurb: '創立於 1969 年的台灣配線器材與線纜管理專家，向團隊贊助紮線帶、熱收縮套管、配線標誌與熱風槍等耗材與工具，協助團隊電控線路的整理與絕緣處理。',
+    order: 6,
+  },
+  {
+    id: 'pancolour',
+    name: '磐采股份有限公司',
+    nameEn: 'Pancolour Ink Co., Ltd.',
+    logo: '/sponsor-pancolour.webp',
+    blurb: '深耕紫外線固化化學與 3D 列印材料的桃園廠商，贊助團隊 PLA／PETG 等 3D 列印耗材，並提供試驗性耗材供團隊測試，支援機構零件的快速打樣。',
+    order: 7,
+  },
 ];
