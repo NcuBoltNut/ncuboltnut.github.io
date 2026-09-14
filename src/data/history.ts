@@ -21,4 +21,5 @@ export const history: HistoryItem[] = [
   { id: 'company-visit-frc', date: '2026.02.04', title: '企業參訪 & FRC 學術交流', body: '赴車王電子進行贊助拜訪，建立企業合作關係，獲得寶貴技術建議與支持；同日與 FRC 7130 深度交流機器人設計理念與賽事策略。', milestone: false, order: 11 },
   { id: 'sdc2026-competition', date: '2026.03.28', title: '2026 國研盃智慧機械競賽', body: '「NCU BoltNut 獵爪清道夫」正式登上國研盃競賽舞台參賽；江宜臻同學於英文演講競賽中脫穎而出，榮獲第 2 名佳績。', milestone: true, order: 12 },
   { id: 'course-expo-2026', date: '2026.06.17', title: '2026 中央大學課程博覽會', body: '以社群展示內容參與課程博覽會，分享團隊機器人研究、競賽成果與人才培育歷程，榮獲「跨域世界開拓先鋒」優等獎。', milestone: true, order: 13 },
+  { id: 'freshman-camp-2026', date: '2026.09.04', title: '2026 大一新生體驗營', body: '與機械系合作舉辦，38 名新生實際參與機器人組裝與對抗賽，問卷整體滿意度達 4.64 / 5，並帶動後續招生說明會與入隊面試報名。', milestone: true, order: 14 },
 ];
