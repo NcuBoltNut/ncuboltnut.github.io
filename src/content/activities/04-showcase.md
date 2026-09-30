@@ -7,7 +7,5 @@ summary: "出發東京威力科創機器人大賽前，於系上舉辦 1 小時�
 stats:
   - num: "20+人"
     label: "參與人次"
-  - num: "1hr"
-    label: "體驗活動"
 order: 7
 ---
