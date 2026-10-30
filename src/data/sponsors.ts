@@ -36,7 +36,7 @@ export const sponsors: Sponsor[] = [
     id: 'sanchu',
     name: '台灣三住股份有限公司',
     nameEn: 'MISUMI Taiwan Co., Ltd.',
-    logo: '/sponsor-sanchu.webp',
+    logo: '/sponsor-misumi.webp',
     blurb: '全球知名 FA 工廠自動化零件供應商，團隊透過「MI夢想齒輪」計畫取得標準零件與快速取貨支援。',
     order: 4,
   },
@@ -63,5 +63,13 @@ export const sponsors: Sponsor[] = [
     logo: '/sponsor-pancolour.webp',
     blurb: '深耕紫外線固化化學與 3D 列印材料的桃園廠商，贊助團隊 PLA／PETG 等 3D 列印耗材，並提供試驗性耗材供團隊測試，支援機構零件的快速打樣。',
     order: 7,
+  },
+  {
+    id: 'happyrack',
+    name: '開心角鋼',
+    nameEn: 'Happy Rack',
+    logo: '/sponsor-happyrack.webp',
+    blurb: '專營免螺絲角鋼家具與貨架，向團隊贊助角鋼櫃，讓工作室的零件與工具收納更加整齊有序。',
+    order: 8,
   },
 ];
