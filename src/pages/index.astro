@@ -136,7 +136,11 @@ const sortedSponsors = [...sponsors].sort((a, b) => a.order - b.order);
     </div>
     <div class="sponsor-mini-grid">
       {sortedSponsors.map((sponsor) => (
-        <div class="sponsor-mini-cell"><img src={sponsor.logo} alt={sponsor.name} /></div>
+        sponsor.website ? (
+          <a class="sponsor-mini-cell" href={sponsor.website} target="_blank" rel="noopener"><img src={sponsor.logo} alt={sponsor.name} /></a>
+        ) : (
+          <div class="sponsor-mini-cell"><img src={sponsor.logo} alt={sponsor.name} /></div>
+        )
       ))}
     </div>
     <div class="sponsor-cta">

@@ -25,7 +25,11 @@ const sortedSponsors = [...sponsors].sort((a, b) => a.order - b.order);
     <div class="sponsor-detail-list">
       {sortedSponsors.map((sponsor) => (
         <div class="sponsor-detail-row">
-          <div class="sponsor-detail-logo"><img src={sponsor.logo} alt={`${sponsor.name} Logo`} /></div>
+          {sponsor.website ? (
+            <a class="sponsor-detail-logo" href={sponsor.website} target="_blank" rel="noopener"><img src={sponsor.logo} alt={`${sponsor.name} 官方網站`} /></a>
+          ) : (
+            <div class="sponsor-detail-logo"><img src={sponsor.logo} alt={`${sponsor.name} Logo`} /></div>
+          )}
           <div class="sponsor-detail-text">
             <p class="name">{sponsor.name}<span>　{sponsor.nameEn}</span></p>
             <p>{sponsor.blurb}</p>
